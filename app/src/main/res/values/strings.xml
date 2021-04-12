@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BootCampSession3</string>
+    <string name="label_title_my_bills">My Bills</string>
+    <string name="action_add_bill">Add Bill</string>
+    <string name="action_return_bills">Return to my Bills</string>
+    <string name="bill_description">Description</string>
+    <string name="bill_amount">Amount</string>
+</resources>
