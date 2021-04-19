@@ -15,7 +15,10 @@ import com.frantun.bootcampsession3.model.BillType
 import java.text.SimpleDateFormat
 import java.util.*
 
-class BillAdapter(private var items: List<Bill> = emptyList(), private val onEventListener: IOnEventClick) :
+class BillAdapter(
+    private var items: List<Bill> = emptyList(),
+    private val onEventListener: IOnEventClick
+) :
     RecyclerView.Adapter<BillAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
@@ -47,19 +50,27 @@ class BillAdapter(private var items: List<Bill> = emptyList(), private val onEve
             descriptionTextView.text = item.description
             amountTextView.text = item.amount.addCurrency()
             val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-//            dateTextView.text = simpleDateFormat.format(item.date)
+            dateTextView.text = simpleDateFormat.format(item.date)
 
-//            typeImageView.setImageDrawable(ContextCompat.getDrawable(itemView.context,
-//                when(item.type) {
-//                    BillType.STUDIES -> R.drawable.ic_bill_1
-//                    BillType.FOOD -> R.drawable.ic_bill_2
-//                    BillType.WORK -> R.drawable.ic_bill_3
-//                    BillType.OTHER -> R.drawable.ic_bill_4
-//                }
-//            ))
+            typeImageView.setImageDrawable(
+                ContextCompat.getDrawable(
+                    itemView.context,
+                    when (item.type) {
+                        BillType.STUDIES -> R.drawable.ic_bill_1
+                        BillType.FOOD -> R.drawable.ic_bill_2
+                        BillType.WORK -> R.drawable.ic_bill_3
+                        BillType.OTHER -> R.drawable.ic_bill_4
+                    }
+                )
+            )
 
             itemView.setOnClickListener {
                 onEventListener.onClick(items[adapterPosition])
+            }
+
+            itemView.setOnLongClickListener {
+                onEventListener.onLongClick(items[adapterPosition])
+                return@setOnLongClickListener true
             }
         }
     }

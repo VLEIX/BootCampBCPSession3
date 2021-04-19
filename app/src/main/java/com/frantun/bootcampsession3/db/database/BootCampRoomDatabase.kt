@@ -4,10 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.frantun.bootcampsession3.db.Converters
 import com.frantun.bootcampsession3.db.dao.BillDao
 import com.frantun.bootcampsession3.model.Bill
 
-@Database(entities = [Bill::class], version = 1)
+@Database(entities = [Bill::class], version = 2, exportSchema = true)
+@TypeConverters(Converters::class)
 abstract class BootCampRoomDatabase : RoomDatabase() {
 
     abstract fun billDao(): BillDao
@@ -21,7 +24,7 @@ abstract class BootCampRoomDatabase : RoomDatabase() {
                     context.applicationContext,
                     BootCampRoomDatabase::class.java,
                     "boot_camp_database"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 instance
             }

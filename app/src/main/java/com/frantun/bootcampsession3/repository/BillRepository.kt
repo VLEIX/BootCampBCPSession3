@@ -11,4 +11,8 @@ class BillRepository(val billDao: BillDao) {
     suspend fun insert(bill: Bill) {
         billDao.insert(bill)
     }
+
+    suspend fun delete(bill: Bill) {
+        billDao.delete(bill)
+    }
 }

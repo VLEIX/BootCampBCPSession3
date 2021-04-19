@@ -9,9 +9,9 @@ class MainViewModel(val billRepository: BillRepository) : ViewModel() {
 
     val allBills: LiveData<List<Bill>> = billRepository.allBills.asLiveData()
 
-    fun insert(bill: Bill) {
+    fun delete(bill: Bill) {
         viewModelScope.launch {
-            billRepository.insert(bill)
+            billRepository.delete(bill)
         }
     }
 }

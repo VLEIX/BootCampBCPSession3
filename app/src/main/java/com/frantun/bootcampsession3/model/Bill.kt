@@ -3,6 +3,7 @@ package com.frantun.bootcampsession3.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
+import java.util.*
 
 enum class BillType {
     STUDIES,
@@ -15,5 +16,7 @@ enum class BillType {
 data class Bill(
     @PrimaryKey
     val description: String,
-    val amount: Double
+    val amount: Double,
+    val date: Date,
+    val type: BillType
 ) : Serializable
